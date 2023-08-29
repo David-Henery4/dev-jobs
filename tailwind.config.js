@@ -2,6 +2,13 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      smMob: '29.68em', // 475px
+      tab: '42.18em', // 675px
+      lap: '52.81em', // 845px was - 940px
+      smDesk: '60.31em', // 965px
+      desk: '62.81em' // 1005px was-1060px
+    },
     colors: {
       mainWhite: '#ffffff',
       violet: '#5964E0',
@@ -17,9 +24,14 @@ module.exports = {
     },
     gridTemplateColumns: {
       mainGridMob: '24px repeat(10, 1fr) 24px',
+      mainGridTab: '40px repeat(10, 1fr) 40px',
+      mainGridLap: '100px repeat(10, 1fr) 100px',
+      mainGridDesk: '165px repeat(10, 1fr) 165px',
+      jobsGrid: 'repeat(auto-fit, minmax(250px, 1fr))',
+      jobsGridLg: 'repeat(auto-fit, minmax(260px, 1fr))'
     },
     gridTemplateRows: {
-      mainRows: "96px 40px 1fr"
+      mainRows: '96px 40px 1fr'
     },
     extend: {}
   },
