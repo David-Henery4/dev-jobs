@@ -5,9 +5,12 @@ module.exports = {
     screens: {
       smMob: '29.68em', // 475px
       tab: '42.18em', // 675px
+      lgTab: '47.5em', // 760px
       lap: '52.81em', // 845px was - 940px
       smDesk: '60.31em', // 965px
-      desk: '62.81em' // 1005px was-1060px
+      desk: '62.81em', // 1005px was-1060px
+      lgDesk: '75em', // 1200px
+      XtraLgDesk: '81.25em' // 1300px
     },
     colors: {
       mainWhite: '#ffffff',
@@ -31,7 +34,8 @@ module.exports = {
       jobsGridLg: 'repeat(auto-fit, minmax(260px, 1fr))'
     },
     gridTemplateRows: {
-      mainRows: '96px 40px 1fr'
+      mainRows: '96px 40px 1fr',
+      mainRowsLg: '120px 40px 1fr'
     },
     extend: {}
   },
