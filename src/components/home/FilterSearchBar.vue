@@ -7,22 +7,29 @@ import FilterModal from './modal/FilterModal.vue'
 import { ref } from 'vue'
 const isModalActive = ref(false)
 //
-const handleModalToggle = () => {
-  isModalActive.value = !isModalActive.value
-  document.body.style.overflowY = "hidden"
+const handleModalToggle = (ev) => {
+  if (!ev?.closest("#modal")){
+    isModalActive.value = !isModalActive.value
+    if (isModalActive.value){
+      document.body.style.overflowY = "hidden"
+    } else {
+      document.body.style.overflowY = "visible"
+    }
+  }
+  
 }
 </script>
 
 <template>
   <div class="w-full px-4 bg-mainWhite rounded-md shadow-2xl flex justify-between items-center">
-    <FilterModal v-show="isModalActive"/>
+    <FilterModal v-show="isModalActive" @close-modal="handleModalToggle"/>
     <TextInput/>
     <LocationFilter />
     <div
       class="py-4 flex justify-center items-center gap-6 lgTab:w-full lgTab:gap-0 lgTab:justify-between lgTab:pl-5 lgTab:max-w-[329px]"
     >
       <icon-comp
-        @click="handleModalToggle"
+        @click="handleModalToggle($event.target)"
         class="lgTab:hidden hover:cursor-pointer"
         name="icon-filter"
         path="mobile"
