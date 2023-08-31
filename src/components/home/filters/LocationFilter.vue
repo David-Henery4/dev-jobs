@@ -10,10 +10,14 @@
 
 <template>
   <div
-    class="h-full border-darkGrey/20 justify-start items-center gap-4 lgTab:w-full lgTab:max-w-[300px] lgTab:pl-6"
+    class="border-darkGrey/20 justify-start items-center gap-4 lgTab:w-full lgTab:max-w-[300px] lgTab:px-6"
     :class="[isModal ? 'flex' : 'hidden lgTab:flex border-x py-4']"
   >
-    <icon-comp name="icon-location" path="desktop" />
-    <p class="text-veryDarkBlue/50">Filter by location...</p>
+
+    <icon-comp class="" name="icon-location" path="desktop" />
+    <div class="relative w-full h-full flex-1">
+      <label class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none">Filter by location...</label>
+      <input class="w-full h-full outline-none" type="text">
+    </div>
   </div>
 </template>
