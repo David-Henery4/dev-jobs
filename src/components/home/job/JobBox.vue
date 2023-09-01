@@ -7,12 +7,14 @@ const props = defineProps({
 })
 </script>
 
+
 <template>
   <div class="w-full bg-mainWhite p-8 pt-12 rounded-md relative">
     <div class="w-12 h-12 rounded-2xl grid place-items-center absolute -top-6 left-8" :style="{backgroundColor: job.logoBackground}">
       <logo-comp :path="job.logo"></logo-comp>
     </div>
 
+    <!-- MAKE THIS A RE-USEABLE COMPONENT FOR THE "JobHeader.vue" job title on the single job page (Including location)  -->
     <div class="grid gap-3">
       <div class="text-darkGrey flex justify-start items-center gap-3">
         <p>{{ job.postedAt }}</p>

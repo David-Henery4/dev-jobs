@@ -36,7 +36,8 @@ module.exports = {
     },
     gridTemplateRows: {
       mainRows: '96px 40px 1fr',
-      mainRowsLg: '120px 40px 1fr'
+      mainRowsLg: '120px 40px 1fr',
+      compantDetailsRows: '25px 25px 1fr'
     },
     extend: {}
   },
