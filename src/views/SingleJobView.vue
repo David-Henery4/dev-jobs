@@ -1,7 +1,10 @@
 <script setup>
+import {useRoute} from "vue-router"
 import CompanyDetails from "../components/single-job/CompanyDetails.vue"
 import JobDetails from "../components/single-job/JobDetails.vue";
 import JobFooter from "../components/single-job/JobFooter.vue";
+const route = useRoute()
+  console.log(route.params)
 </script>
 
 <template>
