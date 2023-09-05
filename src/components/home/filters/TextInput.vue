@@ -1,5 +1,11 @@
 <script setup>
-
+import {userJobsStore} from "../../../stores/jobs"
+import {ref, watch} from "vue"
+const titleValue = ref("")
+const {filterByTitle} = userJobsStore()
+watch(titleValue, (newValue) => {
+  filterByTitle(newValue)
+})
 </script>
 
 <template>
@@ -23,6 +29,7 @@
           id="filter-text-input"
           name="filter-text-input"
           type="text"
+          v-model="titleValue"
         />
       </div>
     </div>
