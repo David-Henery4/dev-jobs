@@ -7,14 +7,16 @@ export const userJobsStore = defineStore('jobs', () => {
   const jobsList = ref(jobsData)
   const filteredJobsList = ref([])
   const currentActiveJobsList = ref(jobsList.value)
-  // const filteredJobsList = ref(jobsData)
   const isFullTimeFilterActive = ref(false)
-  const filteredByTitleValue = ref("")
-  const prevTitleValue = ref("")
-  const filteredByLocationValue = ref("")
+  const filteredByTitleValue = ref('')
+  const filteredByLocationValue = ref('')
   //
   const isFilterMode = computed(() => {
-    return isFullTimeFilterActive.value === true || filteredByLocationValue.value !== "" || filteredByTitleValue.value !== ""
+    return (
+      isFullTimeFilterActive.value === true ||
+      filteredByLocationValue.value !== '' ||
+      filteredByTitleValue.value !== ''
+    )
   })
   //
   watch([isFullTimeFilterActive, filteredByLocationValue, filteredByLocationValue], isFilterMode)
@@ -31,65 +33,136 @@ export const userJobsStore = defineStore('jobs', () => {
     filteredByTitleValue.value = value.trim()
   }
   //
-  const filterByLocation = (value) => {}
+  const filterByLocation = (value) => {
+    filteredByLocationValue.value = value.trim()
+  }
+  //
+  const handleLocationFilter = () => {
+    if (
+      filteredByLocationValue.value !== '' &&
+      filteredByTitleValue.value === '' &&
+      !isFullTimeFilterActive.value
+    ) {
+      filteredJobsList.value = jobsList.value.filter(
+        (job) =>
+          job.location.toLowerCase().includes(filteredByLocationValue.value.toLowerCase()) && job
+      )
+    }
+  }
   //
   const handleFullTimeFilter = () => {
-    if (isFullTimeFilterActive.value) {
-      const newRay = jobsList.value.filter((job) => job.contract === 'Full Time')
-      filteredJobsList.value = [...new Set([...filteredJobsList.value, ...newRay])]
-    }
-    if (!isFullTimeFilterActive.value){
-      filteredJobsList.value = filteredJobsList.value.filter((job) => job.contract !== 'Full Time')
+    if (
+      isFullTimeFilterActive.value &&
+      filteredByTitleValue.value === '' &&
+      filteredByLocationValue.value === ''
+    ) {
+      filteredJobsList.value = jobsList.value.filter((job) => job.contract === 'Full Time')
     }
   }
   //
   const handleTitleFilter = () => {
-    if (filteredByTitleValue.value !== ''){
-      const newRay = jobsList.value.filter(job => 
-        job.position.toLowerCase().includes(filteredByTitleValue.value.toLowerCase()) && job
+    if (
+      filteredByTitleValue.value !== '' &&
+      !isFullTimeFilterActive.value &&
+      filteredByLocationValue.value === ''
+    ) {
+      filteredJobsList.value = jobsList.value.filter(
+        (job) =>
+          job.position.toLowerCase().includes(filteredByTitleValue.value.toLowerCase()) && job
       )
-      filteredJobsList.value = [...new Set([...filteredJobsList.value, ...newRay])]
-      prevTitleValue.value = filteredByTitleValue.value
     }
-    if (filteredByTitleValue.value === '' && prevTitleValue.value) {
-      const newRay = [...new Set([...filteredJobsList.value])].filter(
-        (job) => !job.position.toLowerCase().includes(prevTitleValue.value.toLowerCase()) && job
+  }
+  //
+  const handleTwoFilters = () => {
+    // Title & fulltime
+    if (
+      filteredByTitleValue.value !== '' &&
+      isFullTimeFilterActive.value &&
+      filteredByLocationValue.value === ''
+    ) {
+      filteredJobsList.value = jobsList.value.filter(
+        (job) =>
+          job.position.toLowerCase().includes(filteredByTitleValue.value.toLowerCase()) &&
+          job.contract === 'Full Time' &&
+          job
       )
-      // filteredJobsList.value = [...new Set([...filteredJobsList.value, ...newRay])]
-      filteredJobsList.value = newRay
-      prevTitleValue.value = ""
+    }
+    // Location & Fulltime
+    if (
+      filteredByTitleValue.value === '' &&
+      isFullTimeFilterActive.value &&
+      filteredByLocationValue.value !== ''
+    ) {
+      filteredJobsList.value = jobsList.value.filter(
+        (job) =>
+          job.location.toLowerCase().includes(filteredByLocationValue.value.toLowerCase()) &&
+          job.contract === 'Full Time' &&
+          job
+      )
+    }
+    // Title & Location
+    if (
+      filteredByTitleValue.value !== '' &&
+      !isFullTimeFilterActive.value &&
+      filteredByLocationValue.value !== ''
+    ) {
+      filteredJobsList.value = jobsList.value.filter(
+        (job) =>
+          job.location.toLowerCase().includes(filteredByLocationValue.value.toLowerCase()) &&
+          job.position.toLowerCase().includes(filteredByTitleValue.value.toLowerCase()) &&
+          job
+      )
+    }
+  }
+  //
+  const handleAllFilters = () => {
+    if (
+      filteredByTitleValue.value !== '' &&
+      isFullTimeFilterActive.value &&
+      filteredByLocationValue.value !== ''
+    ) {
+      filteredJobsList.value = jobsList.value.filter(
+        (job) =>
+          job.position.toLowerCase().includes(filteredByTitleValue.value.toLowerCase()) &&
+          job.location.toLowerCase().includes(filteredByLocationValue.value.toLowerCase()) &&
+          job.contract === 'Full Time' &&
+          job
+      )
     }
   }
   //
   const submitFilters = () => {
     if (isFilterMode.value) {
+      handleLocationFilter()
       handleFullTimeFilter()
       handleTitleFilter()
+      //
+      handleTwoFilters()
+      handleAllFilters()
       currentActiveJobsList.value = filteredJobsList.value
     }
     if (!isFilterMode.value) {
       currentActiveJobsList.value = jobsData
     }
-    // handleFullTimeFilter()
-    // handleTitleFilter()
   }
   //
   return {
     jobsList,
     activeJob,
     setActiveJob,
+    //
     filterByFullTime,
-    isFullTimeFilterActive,
     filterByTitle,
+    filterByLocation,
+    //
     filteredJobsList,
     isFilterMode,
     //
+    isFullTimeFilterActive,
     filteredByLocationValue,
     filteredByTitleValue,
-    // filterByLocation
     //
     submitFilters,
-    prevTitleValue,
     //
     currentActiveJobsList
   }
