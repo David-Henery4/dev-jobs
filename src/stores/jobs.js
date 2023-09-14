@@ -3,13 +3,14 @@ import { defineStore } from 'pinia'
 import jobsData from '../local-data/data.json'
 
 export const userJobsStore = defineStore('jobs', () => {
-  const isDevToolsWorking  = ref(false) // will delete
   const activeJob = ref({})
   const jobsList = ref(jobsData)
   const filteredJobsList = ref([])
+  const currentActiveJobsList = ref(jobsList.value)
   // const filteredJobsList = ref(jobsData)
   const isFullTimeFilterActive = ref(false)
   const filteredByTitleValue = ref("")
+  const prevTitleValue = ref("")
   const filteredByLocationValue = ref("")
   //
   const isFilterMode = computed(() => {
@@ -27,7 +28,7 @@ export const userJobsStore = defineStore('jobs', () => {
   }
   //
   const filterByTitle = (value) => {
-    filteredByTitleValue.value = value
+    filteredByTitleValue.value = value.trim()
   }
   //
   const filterByLocation = (value) => {}
@@ -35,15 +36,42 @@ export const userJobsStore = defineStore('jobs', () => {
   const handleFullTimeFilter = () => {
     if (isFullTimeFilterActive.value) {
       const newRay = jobsList.value.filter((job) => job.contract === 'Full Time')
-      filteredJobsList.value = [...filteredJobsList.value, ...newRay]
+      filteredJobsList.value = [...new Set([...filteredJobsList.value, ...newRay])]
     }
     if (!isFullTimeFilterActive.value){
       filteredJobsList.value = filteredJobsList.value.filter((job) => job.contract !== 'Full Time')
     }
   }
   //
+  const handleTitleFilter = () => {
+    if (filteredByTitleValue.value !== ''){
+      const newRay = jobsList.value.filter(job => 
+        job.position.toLowerCase().includes(filteredByTitleValue.value.toLowerCase()) && job
+      )
+      filteredJobsList.value = [...new Set([...filteredJobsList.value, ...newRay])]
+      prevTitleValue.value = filteredByTitleValue.value
+    }
+    if (filteredByTitleValue.value === '' && prevTitleValue.value) {
+      const newRay = [...new Set([...filteredJobsList.value])].filter(
+        (job) => !job.position.toLowerCase().includes(prevTitleValue.value.toLowerCase()) && job
+      )
+      // filteredJobsList.value = [...new Set([...filteredJobsList.value, ...newRay])]
+      filteredJobsList.value = newRay
+      prevTitleValue.value = ""
+    }
+  }
+  //
   const submitFilters = () => {
-    handleFullTimeFilter()
+    if (isFilterMode.value) {
+      handleFullTimeFilter()
+      handleTitleFilter()
+      currentActiveJobsList.value = filteredJobsList.value
+    }
+    if (!isFilterMode.value) {
+      currentActiveJobsList.value = jobsData
+    }
+    // handleFullTimeFilter()
+    // handleTitleFilter()
   }
   //
   return {
@@ -53,7 +81,6 @@ export const userJobsStore = defineStore('jobs', () => {
     filterByFullTime,
     isFullTimeFilterActive,
     filterByTitle,
-    isDevToolsWorking,
     filteredJobsList,
     isFilterMode,
     //
@@ -61,6 +88,9 @@ export const userJobsStore = defineStore('jobs', () => {
     filteredByTitleValue,
     // filterByLocation
     //
-    submitFilters
+    submitFilters,
+    prevTitleValue,
+    //
+    currentActiveJobsList
   }
 })
