@@ -25,12 +25,8 @@ export const userJobsStore = defineStore('jobs', () => {
     activeJob.value = jobsList.value.find((j) => j.id === +id)
   }
   //
-  const filterByFullTime = (isChecked) => {
-    isFullTimeFilterActive.value = isChecked
-  }
-  //
-  const filterByTitle = (value) => {
-    filteredByTitleValue.value = value.trim()
+  const filterByFullTime = () => {
+    isFullTimeFilterActive.value = !isFullTimeFilterActive.value
   }
   //
   const filterByLocation = (value) => {
@@ -152,7 +148,6 @@ export const userJobsStore = defineStore('jobs', () => {
     setActiveJob,
     //
     filterByFullTime,
-    filterByTitle,
     filterByLocation,
     //
     filteredJobsList,

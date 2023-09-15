@@ -17,6 +17,10 @@ const handleModalToggle = (ev) => {
       document.body.style.overflowY = 'visible'
     }
   }
+  if(ev.closest("#search-btn-modal")){
+    isModalActive.value = false
+    document.body.style.overflowY = 'visible'
+  }
 }
 //
 const isDesktop = useMedia('(min-width:47.5em)')

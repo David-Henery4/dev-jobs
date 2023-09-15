@@ -31,8 +31,8 @@ module.exports = {
       mainGridTab: '40px repeat(10, 1fr) 40px',
       mainGridLap: '100px repeat(10, 1fr) 100px',
       mainGridDesk: '165px repeat(10, 1fr) 165px',
-      jobsGrid: 'repeat(auto-fit, minmax(250px, 1fr))',
-      jobsGridLg: 'repeat(auto-fit, minmax(260px, 1fr))'
+      jobsGrid: 'repeat(auto-fill, minmax(250px, 1fr))',
+      jobsGridLg: 'repeat(auto-fill, minmax(260px, 1fr))'
     },
     gridTemplateRows: {
       mainRows: '96px 40px 1fr',

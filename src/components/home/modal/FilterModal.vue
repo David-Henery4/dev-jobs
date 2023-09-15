@@ -16,7 +16,7 @@ defineEmits(['toggle-modal'])
       </div>
       <div class="p-6">
         <FullTimeFilter :isModal="true" />
-        <SearchBtn :isModal="true" />
+        <SearchBtn id="search-btn-modal" :isModal="true" @click="$emit('toggle-modal', $event.target)"/>
       </div>
     </div>
   </div>

@@ -1,11 +1,7 @@
 <script setup>
-import { ref, watch } from 'vue'
+import {storeToRefs} from "pinia"
 import {userJobsStore} from "../../../stores/jobs";
-const {filterByLocation} = userJobsStore()
-const locationValue = ref('')
-watch(locationValue, (newValue) => {
-  filterByLocation(newValue)
-})
+const {filteredByLocationValue} = storeToRefs(userJobsStore())
 defineProps({
   isModal: {
     type: Boolean,
@@ -25,7 +21,7 @@ defineProps({
       <label class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none"
         >Filter by location...</label
       >
-      <input class="w-full h-full outline-none" type="text" v-model="locationValue"/>
+      <input class="w-full h-full outline-none" type="text" v-model="filteredByLocationValue"/>
     </div>
   </div>
 </template>

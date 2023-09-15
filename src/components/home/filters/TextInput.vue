@@ -1,11 +1,7 @@
 <script setup>
 import {userJobsStore} from "../../../stores/jobs"
-import {ref, watch} from "vue"
-const titleValue = ref("")
-const {filterByTitle} = userJobsStore()
-watch(titleValue, (newValue) => {
-  filterByTitle(newValue)
-})
+import {storeToRefs} from "pinia"
+const {filteredByTitleValue} = storeToRefs(userJobsStore())
 </script>
 
 <template>
@@ -29,7 +25,7 @@ watch(titleValue, (newValue) => {
           id="filter-text-input"
           name="filter-text-input"
           type="text"
-          v-model="titleValue"
+          v-model="filteredByTitleValue"
         />
       </div>
     </div>
