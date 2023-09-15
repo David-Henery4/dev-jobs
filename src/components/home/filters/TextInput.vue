@@ -1,7 +1,14 @@
 <script setup>
+import {ref} from "vue"
 import {userJobsStore} from "../../../stores/jobs"
 import {storeToRefs} from "pinia"
 const {filteredByTitleValue} = storeToRefs(userJobsStore())
+const isLabelActive = ref(false)
+//
+const handleLabelChange = () => {
+  isLabelActive.value = filteredByTitleValue.value === "" ?  false : true
+}
+//
 </script>
 
 <template>
@@ -16,7 +23,9 @@ const {filteredByTitleValue} = storeToRefs(userJobsStore())
       <div class="relative w-full flex-1">
         <label
           class="absolute pointer-events-none top-0 left-0 text-base font-normal text-veryDarkBlue/50"
+          :class="[isLabelActive? 'hidden' : 'block']"
           for="filter-text-input"
+          :on-focus="handleLabelChange()"
         >
           Filter by title
         </label>

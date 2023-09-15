@@ -1,7 +1,14 @@
 <script setup>
-import {storeToRefs} from "pinia"
-import {userJobsStore} from "../../../stores/jobs";
-const {filteredByLocationValue} = storeToRefs(userJobsStore())
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { userJobsStore } from '../../../stores/jobs'
+const { filteredByLocationValue } = storeToRefs(userJobsStore())
+const isLabelActive = ref(false)
+//
+const handleLabelChange = () => {
+  isLabelActive.value = filteredByLocationValue.value === '' ? false : true
+}
+
 defineProps({
   isModal: {
     type: Boolean,
@@ -18,10 +25,15 @@ defineProps({
   >
     <icon-comp class="" name="icon-location" path="desktop" />
     <div class="relative w-full h-full flex-1">
-      <label class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none"
+      <label class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none" :class="[isLabelActive? 'hidden' : 'block']"
         >Filter by location...</label
       >
-      <input class="w-full h-full outline-none" type="text" v-model="filteredByLocationValue"/>
+      <input
+        class="w-full h-full outline-none"
+        type="text"
+        :on-focus="handleLabelChange()"
+        v-model="filteredByLocationValue"
+      />
     </div>
   </div>
 </template>
