@@ -1,18 +1,12 @@
 <script setup>
-  import {ref} from "vue"
-  const isDarkMode = ref(false)
-  //
-  const handleToggle = () => {
-    isDarkMode.value = !isDarkMode.value
-  }
-  //
+
 </script>
 
 <template>
   <div class="flex justify-center items-center gap-4">
     <icon-comp name="icon-sun" path="desktop"/>
     <div class="w-12 h-6 rounded-xl bg-mainWhite relative" @click="handleToggle" >
-      <div class="w-[14px] h-[14px] transition-all rounded-full bg-violet absolute top-1/2 left-0 -translate-y-1/2" :class="[isDarkMode ? 'translate-x-[29px]' : 'translate-x-[5px]']"></div>
+      <div class="w-[14px] h-[14px] transition-all rounded-full bg-violet absolute top-1/2 left-0 -translate-y-1/2 translate-x-[5px] dark:translate-x-[29px]"></div>
     </div>
     <icon-comp name="icon-moon" path="desktop"/>
   </div>

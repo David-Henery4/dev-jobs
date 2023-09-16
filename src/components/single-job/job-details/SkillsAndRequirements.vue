@@ -15,7 +15,7 @@ defineProps({
 
 <template>
   <div>
-    <h3 class="text-veryDarkBlue font-bold mb-6 tab:mb-7">Requirements</h3>
+    <h3 class="text-veryDarkBlue font-bold mb-6 tab:mb-7 dark:text-mainWhite">Requirements</h3>
     <BodyText>
       {{ content.content }}
     </BodyText>

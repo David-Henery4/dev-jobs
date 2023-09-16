@@ -1,6 +1,13 @@
 <script setup>
+import {onMounted} from "vue"
 import { RouterView } from 'vue-router'
 import HeaderSection from './components/shared/HeaderSection.vue';
+import useThemeChange from "./composables/useThemeChange";
+const {checkSystemPreference} = useThemeChange()
+onMounted(() => {
+  // console.log("callled")
+  checkSystemPreference()
+})
 </script>
 
 <template>

@@ -25,11 +25,11 @@ defineProps({
   >
     <icon-comp class="" name="icon-location" path="desktop" />
     <div class="relative w-full h-full flex-1">
-      <label class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none" :class="[isLabelActive? 'hidden' : 'block']"
+      <label class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none dark:text-mainWhite" :class="[isLabelActive? 'hidden' : 'block']"
         >Filter by location...</label
       >
       <input
-        class="w-full h-full outline-none"
+        class="w-full h-full outline-none bg-[transparent]"
         type="text"
         :on-focus="handleLabelChange()"
         v-model="filteredByLocationValue"

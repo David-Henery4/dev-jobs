@@ -9,7 +9,7 @@ const props = defineProps({
 
 
 <template>
-  <div class="w-full h-full bg-mainWhite p-8 pt-12 rounded-md relative">
+  <div class="w-full h-full bg-mainWhite p-8 pt-12 rounded-md relative dark:bg-veryDarkBlue">
     <div class="w-12 h-12 rounded-2xl grid place-items-center absolute -top-6 left-8" :style="{backgroundColor: job.logoBackground}">
       <logo-comp :path="job.logo"></logo-comp>
     </div>
@@ -21,7 +21,7 @@ const props = defineProps({
         <div class="rounded-full w-1 h-1 bg-darkGrey"></div>
         <p>{{ job.contract }}</p>
       </div>
-      <h2 class="text-xl font-bold">{{ job.position }}</h2>
+      <h2 class="text-xl font-bold dark:text-mainWhite">{{ job.position }}</h2>
       <p class="text-darkGrey">{{ job.company }}</p>
     </div>
 

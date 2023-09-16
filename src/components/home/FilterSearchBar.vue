@@ -35,7 +35,7 @@ watch(isDesktop, () => {
 </script>
 
 <template>
-  <div class="w-full px-4 bg-mainWhite rounded-md shadow-2xl flex justify-between items-center">
+  <div class="w-full px-4 bg-mainWhite rounded-md shadow-2xl flex justify-between items-center dark:bg-veryDarkBlue">
     <FilterModal v-show="isModalActive" @toggle-modal="handleModalToggle" />
     <TextInput />
     <LocationFilter />

@@ -13,7 +13,7 @@ const { postedAt, contract, position, location, description, requirements, role 
 </script>
 
 <template>
-  <div class="py-10 px-6 w-full bg-mainWhite rounded-md grid gap-9 tab:gap-10 tab:px-12">
+  <div class="py-10 px-6 w-full bg-mainWhite rounded-md grid gap-9 tab:gap-10 tab:px-12 dark:bg-veryDarkBlue">
     <JobHeader :headerInfo="{ postedAt, contract, position, location }" />
     <JobDescription :description="description" />
     <SkillsAndRequirements :content="requirements" />

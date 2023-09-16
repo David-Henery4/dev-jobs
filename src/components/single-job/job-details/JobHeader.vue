@@ -17,8 +17,8 @@ defineProps({
         <div class="rounded-full w-1 h-1 bg-darkGrey"></div>
         <p>{{ headerInfo.contract }}</p>
       </div>
-      <h2 class="text-xl font-bold">{{ headerInfo.position }}</h2>
-      <p class="text-darkGrey">{{ headerInfo.location }}</p>
+      <h2 class="text-xl font-bold dark:text-mainWhite">{{ headerInfo.position }}</h2>
+      <p class="text-violet">{{ headerInfo.location }}</p>
     </div>
     <a
       href="#"
