@@ -1,36 +1,38 @@
-// - USE WHEN LISTENING TO CHNAGES IN REAL-TIME
-
-// window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
-//   if (matches) {
-//     console.log('change to dark mode!')
-//   } else {
-//     console.log('change to light mode!')
-//   }
-// })
-
-// Reminder save preference to local storage
 
 const useThemeChange = () => {
   const htmlEle = document.documentElement
   //
-  const checkSystemPreference = () => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      htmlEle.classList.remove('light')
-      htmlEle.classList.add('dark')
-    } else {
-      htmlEle.classList.remove('dark')
-      htmlEle.classList.add('light')
+  const setInitialTheme = () => {
+    if(localStorage.getItem('theme') !== null){
+      const currentSavedTheme = localStorage.getItem("theme")
+      changeTheme(currentSavedTheme === "dark")
+    } else{
+      changeTheme(window.matchMedia('(prefers-color-scheme: dark)').matches)
     }
   }
   //
-  const setInitialTheme = () => {
-    
+  const toggleTheme = () => {
+    changeTheme(!htmlEle.classList.contains('dark'))
+  }
+  //
+  const changeTheme = (isDark) => {
+    if (isDark) {
+      htmlEle.classList.remove('light')
+      htmlEle.classList.add('dark')
+      localStorage.setItem("theme", "dark")
+    } else {
+      htmlEle.classList.remove('dark')
+      htmlEle.classList.add('light')
+      localStorage.setItem('theme', 'light')
+    }
   }
   //
   return {
+    toggleTheme,
     setInitialTheme,
-    checkSystemPreference
+    changeTheme,
   }
 }
+
 
 export default useThemeChange
