@@ -11,6 +11,11 @@ export const userJobsStore = defineStore('jobs', () => {
   const filteredByTitleValue = ref('')
   const filteredByLocationValue = ref('')
   //
+  const baseNumOfVisibleJobs = ref(12)
+  const numOfVisibleJobs = ref(12)
+  const currentlyShownJobs =  ref(currentActiveJobsList.value.slice(0, numOfVisibleJobs.value))
+  const isAllJobsShown = ref(false)
+  //
   const isFilterMode = computed(() => {
     return (
       isFullTimeFilterActive.value === true ||
@@ -20,6 +25,31 @@ export const userJobsStore = defineStore('jobs', () => {
   })
   //
   watch([isFullTimeFilterActive, filteredByLocationValue, filteredByLocationValue], isFilterMode)
+  //
+  const handleShowMoreJobs = () => {
+    numOfVisibleJobs.value = baseNumOfVisibleJobs.value + 12
+    currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)
+    if (numOfVisibleJobs.value >= currentlyShownJobs.value.length) {
+      numOfVisibleJobs.value = currentActiveJobsList.value.length
+      currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)
+      isAllJobsShown.value = true
+    }
+  }
+  //
+  const showInitialJobs = () => {
+    if (currentActiveJobsList.value.length <= baseNumOfVisibleJobs.value){
+      isAllJobsShown.value = true
+      numOfVisibleJobs.value = currentActiveJobsList.value.length
+      currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)
+    }
+    if (currentActiveJobsList.value.length > baseNumOfVisibleJobs.value) {
+      console.log("clicked")
+      isAllJobsShown.value = false
+      numOfVisibleJobs.value = baseNumOfVisibleJobs.value
+      currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)
+    }
+  }
+  // watch([currentActiveJobsList], showInitialJobs)
   //
   const setActiveJob = (id) => {
     activeJob.value = jobsList.value.find((j) => j.id === +id)
@@ -136,9 +166,11 @@ export const userJobsStore = defineStore('jobs', () => {
       handleTwoFilters()
       handleAllFilters()
       currentActiveJobsList.value = filteredJobsList.value
+      showInitialJobs()
     }
     if (!isFilterMode.value) {
       currentActiveJobsList.value = jobsData
+      showInitialJobs()
     }
   }
   //
@@ -159,6 +191,12 @@ export const userJobsStore = defineStore('jobs', () => {
     //
     submitFilters,
     //
-    currentActiveJobsList
+    currentActiveJobsList,
+    //
+    handleShowMoreJobs,
+    numOfVisibleJobs,
+    currentlyShownJobs,
+    isAllJobsShown,
+    baseNumOfVisibleJobs
   }
 })
