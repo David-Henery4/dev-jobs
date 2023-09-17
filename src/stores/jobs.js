@@ -1,4 +1,4 @@
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
 import jobsData from '../local-data/data.json'
 
@@ -24,7 +24,7 @@ export const userJobsStore = defineStore('jobs', () => {
     )
   })
   //
-  watch([isFullTimeFilterActive, filteredByLocationValue, filteredByLocationValue], isFilterMode)
+  watchEffect(isFilterMode)
   //
   const handleShowMoreJobs = () => {
     numOfVisibleJobs.value = baseNumOfVisibleJobs.value + 12
@@ -48,7 +48,6 @@ export const userJobsStore = defineStore('jobs', () => {
       currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)
     }
   }
-  // watch([currentActiveJobsList], showInitialJobs)
   //
   const setActiveJob = (id) => {
     activeJob.value = jobsList.value.find((j) => j.id === +id)
