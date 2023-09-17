@@ -13,7 +13,7 @@ const handleLabelChange = () => {
 
 <template>
   <div
-      class="w-full py-4 flex justify-center items-center gap-4 hover:cursor-pointer lgTab:pr-5 lgTab:justify-start"
+      class="w-full py-4 flex justify-center items-center gap-4 lgTab:pr-5 lgTab:justify-start"
     >
       <icon-comp
         class="fill-violet hidden lgTab:block"

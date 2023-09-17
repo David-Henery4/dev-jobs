@@ -14,7 +14,7 @@ defineProps({
         <h3 class="font-bold text-xl text-veryDarkBlue dark:text-mainWhite">{{activeJob.activeJob.position}}</h3>
         <p class="text-darkGrey">{{ activeJob.activeJob.company }}</p>
       </div>
-      <button class="w-full bg-violet py-4 rounded-md text-mainWhite font-bold tab:max-w-[141px]">
+      <button class="w-full bg-violet py-4 rounded-md text-mainWhite font-bold hover:bg-lightViolet active:bg-violet tab:max-w-[141px]">
         Apply <span class="hidden tab:inline">Now</span>
       </button>
     </div>

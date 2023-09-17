@@ -22,7 +22,7 @@ defineProps({
     </div>
     <a
       href="#"
-      class="w-full p-4 text-center rounded-md font-bold bg-violet text-mainWhite tab:max-w-[141px]"
+      class="w-full p-4 text-center rounded-md font-bold bg-violet text-mainWhite hover:bg-lightViolet active:bg-violet tab:max-w-[141px]"
     >
       Apply Now
     </a>

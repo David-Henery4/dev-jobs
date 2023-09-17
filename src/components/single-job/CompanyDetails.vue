@@ -22,7 +22,7 @@ defineProps({
         <a href="#" class="text-darkGrey lowercase">{{ `${activeJob.activeJob.company}.com` }}</a>
       </div>
       <div class="tab:ml-auto">
-        <a href="#" class="text-violet font-bold px-5 py-4 bg-violet/10 rounded-md dark:text-mainWhite dark:bg-mainWhite/10">Company Site</a>
+        <a href="#" class="text-violet font-bold px-5 py-4 bg-violet/10 rounded-md hover:bg-violet/30 dark:text-mainWhite dark:bg-mainWhite/10 hover:dark:bg-mainWhite/25">Company Site</a>
       </div>
     </div>
   </div>
