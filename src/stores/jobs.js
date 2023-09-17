@@ -43,7 +43,6 @@ export const userJobsStore = defineStore('jobs', () => {
       currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)
     }
     if (currentActiveJobsList.value.length > baseNumOfVisibleJobs.value) {
-      console.log("clicked")
       isAllJobsShown.value = false
       numOfVisibleJobs.value = baseNumOfVisibleJobs.value
       currentlyShownJobs.value = currentActiveJobsList.value.slice(0, numOfVisibleJobs.value)

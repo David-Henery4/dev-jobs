@@ -29,7 +29,7 @@ defineProps({
         >Filter by location...</label
       >
       <input
-        class="w-full h-full outline-none bg-[transparent]"
+        class="w-full h-full outline-none bg-[transparent] dark:text-mainWhite"
         type="text"
         :on-focus="handleLabelChange()"
         v-model="filteredByLocationValue"

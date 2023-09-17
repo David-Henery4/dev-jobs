@@ -10,7 +10,7 @@ defineEmits(['toggle-modal'])
     class="fixed top-0 left-0 w-full h-full bg-black/50 z-10 grid place-content-center px-6"
     @click="$emit('toggle-modal', $event.target)"
   >
-    <div id="modal" class="rounded-md bg-mainWhite w-[87vw] max-w-sm">
+    <div id="modal" class="rounded-md bg-mainWhite w-[87vw] max-w-sm dark:bg-veryDarkBlue">
       <div class="p-6 border-b border-darkGrey/20">
         <LocationFilter :isModal="true" />
       </div>

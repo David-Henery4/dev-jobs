@@ -19,8 +19,16 @@ defineProps({
     <BodyText>
       {{ content.content }}
     </BodyText>
-    <ul class="text-base leading-[26px] text-darkGrey mt-8 list-inside grid gap-2 tab:mt-6" :class="[isSkill ? 'list-decimal' : 'list-disc']">
-      <li v-for="(item,i) in content.items" :key="i">{{ item }}</li>
+    <ul
+      class="text-base leading-[26px] text-darkGrey mt-8 list-inside grid gap-2 tab:mt-6"
+    >
+      <li class="flex justify-start items-baseline gap-7" v-for="(item, i) in content.items" :key="i">
+        <div v-show="!isSkill" class="w-1 h-1 rounded-full relative bottom-[2.5px] bg-violet"></div>
+        <div v-show="isSkill" class="text-violet">{{ i + 1 }}</div>
+        <p class="flex-1">{{ item }}</p>
+      </li>
     </ul>
   </div>
 </template>
+
+<!-- :class="[isSkill ? 'list-decimal' : 'list-disc']" -->

@@ -30,7 +30,7 @@ const handleLabelChange = () => {
           Filter by title
         </label>
         <input
-          class="w-full outline-none bg-[transparent]"
+          class="w-full outline-none bg-[transparent] dark:text-mainWhite"
           id="filter-text-input"
           name="filter-text-input"
           type="text"
