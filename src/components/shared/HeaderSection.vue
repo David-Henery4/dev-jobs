@@ -4,7 +4,7 @@
   // import headerImgMob from "../../assets/mobile/bg-pattern-header.svg"
   // import headerImgTablet from "../../assets/tablet/bg-pattern-header.svg"
   // import headerImgDesk from "../../assets/desktop/bg-pattern-header.svg"
-  
+
 </script>
 
 <template>
@@ -19,13 +19,13 @@
     </div>
     <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
       <picture>
-        <source :srcset="'/src/assets/desktop/bg-pattern-header.svg'" media="(min-width: 62.81em)">
-        <source :srcset="'/src/assets/tablet/bg-pattern-header.svg'" media="(min-width: 42.18em)">
+        <source srcset="../../assets/desktop/bg-pattern-header.svg" media="(min-width: 62.81em)">
+        <source srcset="../../assets/tablet/bg-pattern-header.svg" media="(min-width: 42.18em)">
         <img
           class="w-full h-full object-cover object-center"
-          :src="'/src/assets/mobile/bg-pattern-header.svg'"
+          src="../../assets/mobile/bg-pattern-header.svg"
           alt="The headers blue background pattern"
-          :srcset="'/src/assets/mobile/bg-pattern-header.svg'"
+          srcset="../../assets/mobile/bg-pattern-header.svg"
         />
       </picture>
     </div>
