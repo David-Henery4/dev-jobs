@@ -15,6 +15,7 @@
     </div>
     <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
       <picture>
+        <!-- Needed ?url because of the svg loader converting the svgs into components -->
         <source srcset="../../assets/desktop/bg-pattern-header.svg?url" media="(min-width: 62.81em)">
         <source srcset="../../assets/tablet/bg-pattern-header.svg?url" media="(min-width: 42.18em)">
         <img

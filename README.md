@@ -37,7 +37,7 @@ Users are be able to:
 # Links to be added
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [dev-jobs](https://dev-jobs-4u.netlify.app)
 
 ## My process
 

@@ -24,15 +24,15 @@ const handleLabelChange = () => {
         <label
           class="absolute pointer-events-none top-0 left-0 text-base font-normal text-veryDarkBlue/50 dark:text-mainWhite"
           :class="[isLabelActive? 'hidden' : 'block']"
-          for="filter-text-input"
+          for="title-input"
           :on-focus="handleLabelChange()"
         >
           Filter by title
         </label>
         <input
           class="w-full outline-none bg-[transparent] dark:text-mainWhite"
-          id="filter-text-input"
-          name="filter-text-input"
+          id="title-input"
+          name="title-input"
           type="text"
           v-model="filteredByTitleValue"
         />
