@@ -25,12 +25,12 @@ defineProps({
   >
     <icon-comp class="" name="icon-location" path="desktop" />
     <div class="relative w-full h-full flex-1">
-      <label for="location-input" class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none dark:text-mainWhite" :class="[isLabelActive? 'hidden' : 'block']"
+      <label :for="[isModal ? 'location-input-2' : 'location-input-1']" class="text-veryDarkBlue/50 absolute top-0 left-0 pointer-events-none dark:text-mainWhite" :class="[isLabelActive? 'hidden' : 'block']"
         >Filter by location...</label
       >
       <input
-        name="location-input"
-        id="location-input"
+        :name="[isModal ? 'location-input-2' : 'location-input-1']"
+        :id="[isModal ? 'location-input-2' : 'location-input-1']"
         class="w-full h-full outline-none bg-[transparent] dark:text-mainWhite"
         type="text"
         :on-focus="handleLabelChange()"
